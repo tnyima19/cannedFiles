@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,31 +16,214 @@
 	<div class="container">
 		<div class="row">
 			<div class="col">
-				<h1>Version</h1>
+				<h1>ID: </h1>
+				<h1>{{ object.id }}</h1>
 			</div>
 			<div class="col">
-				<h1> Title </h1>
+				<h1> Title : </h1>
+				<h1>{{object.title}} </h1>
 			</div>
-			<div class="col">
-				<h1>Message</h1>
-			</div>
-			<div class="col">
-				<h1>Transition Time</h1>
-			</div>
+			
 		</div>
 	</div>
+<!-- 
+	<div class="container">
+			count = 1
 			<div class="row">
 				<div class="col">
 					{{object.id}}
 				</div>
 				<div class="col">
-					{{object.title}}
+				
 				</div>
 				<div class="col">
-					{{object.line}}
 				</div>
-				<div class="col">
-					{{object.transition_time}}
+			</div>
+
+		</div>	
+ -->
+
+ <div class="row">
+				<div class="col-2">
+				<label class="col-sm-1 col-form-label">Line1: </label>
+						
+				</div>
+				<div class="col-lg">
+					<label>{{object.line1}} </label>
+				</div>
+				<div class="col-sm">
+					<label>{{object.scroll1}}</label>
+				</div>
+				<div class="col-sm">
+					<label> {{object.flash1}} </label>
+					<label class="form-check-label" for="flexCheckDefault">
+				</div>
+		
+				<div class="col-sm">
+					<label>{{object.transition_time1}} </label>
+				</div>
+				<div class="col-sm">
+					<label >sec</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-2">
+				<label class="col-sm-1 col-form-label">Line2: </label>
+						
+				</div>
+				<div class="col-lg">
+					<label>{{object.line2}}</label>
+				</div>
+				<div class="col-sm">
+					<label>{{object.scroll2}}</label>
+				</div>
+				<div class="col-sm">
+					<label>{{object.flash2}} </label>
+					<label class="form-check-label" for="flexCheckDefault">
+				</div>
+		
+				<div class="col-sm">
+					<label>{{object.transition_time2}} </label>
+				</div>
+				<div class="col-sm">
+					<label >sec</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-2">
+				<label class="col-sm-1 col-form-label">Line3: </label>
+						
+				</div>
+				<div class="col-lg">
+					<label>{{object.line3}}</label>
+				</div>
+				<div class="col-sm">
+					<label>{{object.scroll3}}</label>
+				</div>
+				<div class="col-sm">
+					<label>{{object.flash3}} </label>
+					<label class="form-check-label" for="flexCheckDefault">
+				</div>
+		
+				<div class="col-sm">
+					<label>{{object.transition_time3}} </label>
+				</div>
+				<div class="col-sm">
+					<label >sec</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-2">
+				<label class="col-sm-1 col-form-label">Line4: </label>
+						
+				</div>
+				<div class="col-lg">
+					<label>{{object.line4}} </label>
+				</div>
+				<div class="col-sm">
+					<label>{{object.scroll4}} </label>
+				</div>
+				<div class="col-sm">
+					<label>{{object.flash4}} </label>
+					<label class="form-check-label" for="flexCheckDefault">
+				</div>
+		
+				<div class="col-sm">
+					<label>{{object.transition_time4}} </label>
+				</div>
+				<div class="col-sm">
+					<label >sec</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-2">
+				<label class="col-sm-1 col-form-label">Line5: </label>
+						
+				</div>
+				<div class="col-lg">
+					<label>{{object.line5}}</label>
+				</div>
+				<div class="col-sm">
+					<label>{{object.line5}}</label>
+				</div>
+				<div class="col-sm">
+					<label>{{object.flash5}} </label>
+					<label class="form-check-label" for="flexCheckDefault">
+				</div>
+		
+				<div class="col-sm">
+					<label>{{object.transition_time5}} </label>
+				</div>
+				<div class="col-sm">
+					<label >sec</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-2">
+				<label class="col-sm-1 col-form-label">Line6: </label>
+						
+				</div>
+				<div class="col-lg">
+					<label>{{object.line6}} </label>
+				</div>
+				<div class="col-sm">
+					<label>{{object.scroll6}} </label>
+				</div>
+				<div class="col-sm">
+					<label>{{object.flash6}}</label>
+					<label class="form-check-label" for="flexCheckDefault">
+				</div>
+		
+				<div class="col-sm">
+					<label>{{object.transition_time6}} </label>
+				</div>
+				<div class="col-sm">
+					<label >sec</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-2">
+				<label class="col-sm-1 col-form-label">Line7: </label>
+						
+				</div>
+				<div class="col-lg">
+					<label>{{object.line7}} </label>
+				</div>
+				<div class="col-sm">
+					<label>{{object.scroll7}}</label>
+				</div>
+				<div class="col-sm">
+					<label>{{object.flash7}}</label>
+					<label class="form-check-label" for="flexCheckDefault">
+				</div>
+		
+				<div class="col-sm">
+					<label>{{object.transition_time7}}</label>
+				</div>
+				<div class="col-sm">
+					<label >sec</label>
+				</div>
+			</div><div class="row">
+				<div class="col-2">
+				<label class="col-sm-1 col-form-label">Line8: </label>
+						
+				</div>
+				<div class="col-lg">
+					<label>{{object.line8}}</label>
+				</div>
+				<div class="col-sm">
+					<label>{{object.scroll8}}</label>
+				</div>
+				<div class="col-sm">
+					<label>{{object.flash8}}</label>
+					<label class="form-check-label" for="flexCheckDefault">
+				</div>
+		
+				<div class="col-sm">
+					<label>{{object.transition_time8}}</label>
+				</div>
+				<div class="col-sm">
+					<label >sec</label>
 				</div>
 			</div>
 
