@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from .models import Message
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.http import HttpResponse
 
 # Create your views here.
@@ -31,13 +31,17 @@ class MessageListView(ListView):
 class MessageDetailView(DetailView):
 	model = Message
 
+class MessageDeleteView(DeleteView):
+	model = Message
+	success_url = '/'
+
 
 class MessageCreateView(CreateView):
 	model = Message
 	fields = ['title', 'line1', 'line2', 'line3', 'line4', 'line5', 'line6', 'line7', 'line8',
 	'scroll1','scroll2','scroll3','scroll4','scroll5', 'scroll6','scroll7','scroll8','flash1',
 	'flash2','flash3','flash4','flash6','flash7','flash8','transition_time1',
-	'transition_time2','trainsition_time3','transition_time4','transition_time5',
+	'transition_time2','transition_time3','transition_time4','transition_time5',
 	'transition_time6', 'transition_time7','transition_time8','display_time']
 
 
