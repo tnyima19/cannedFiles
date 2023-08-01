@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from .models import Message
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.http import HttpResponse
 
 # Create your views here.
@@ -11,8 +11,7 @@ fourth_val = ''
 fifth_val = ''
 sixth_val = ''
 curr_sec = 5
-announcement5= ['[title_val]', '\\x06\\R\\X254\\Dno\\','t_time1', 'first_', '\\X254\\Ano\\Dno\\', 't_time2', 'second_', '\\n\\X254\\Ano\\Dno\\','t_time3', 'third_', '\\n\\X254\\Ano\\Dno\\','t_time4', 'fourth_', '\n\\X254\\Ano\\Dno\\','t_time5', 'fifth_', ' WAIT ', 'wait_time',' SEC SIGNTYPE 0xC "\\x6403" ', 'voice_file_name', ' WAIT ', 'display_time', ' SEC INT "\\x06\x05\\J\\"']
-announcement2 = ['[title_val]', '\\x06\\R\\X254\\Dno\\','t_time1', 'first_', '\\X254\\Ano\\Dno\\', 't_time2', 'second_',' WAIT ', 'wait_time',' SEC SIGNTYPE 0xC "\\x6403" ', 'voice_file_name', ' WAIT ', 'display_time', ' SEC INT "\\x06\x05\\J\\"']
+
 def home(request):
 	context = {
 		'message':Message.objects.all()
@@ -31,6 +30,24 @@ class MessageListView(ListView):
 
 class MessageDetailView(DetailView):
 	model = Message
+
+
+class MessageCreateView(CreateView):
+	model = Message
+	fields = ['title', 'line1', 'line2', 'line3', 'line4', 'line5', 'line6', 'line7', 'line8',
+	'scroll1','scroll2','scroll3','scroll4','scroll5', 'scroll6','scroll7','scroll8','flash1',
+	'flash2','flash3','flash4','flash6','flash7','flash8','transition_time1',
+	'transition_time2','trainsition_time3','transition_time4','transition_time5',
+	'transition_time6', 'transition_time7','transition_time8','display_time']
+
+
+class MessageUpdateView(UpdateView):
+	model = Message
+	fields = ['title', 'line1', 'line2', 'line3', 'line4', 'line5', 'line6', 'line7', 'line8',
+	'scroll1','scroll2','scroll3','scroll4','scroll5', 'scroll6','scroll7','scroll8','flash1',
+	'flash2','flash3','flash4','flash6','flash7','flash8','transition_time1',
+	'transition_time2','transition_time3','transition_time4','transition_time5',
+	'transition_time6', 'transition_time7','transition_time8','display_time']
 
 
 def create_message(request):
@@ -101,7 +118,7 @@ def create_message(request):
 			flash6 = flash6 if flash6 else False,
 			flash7 = flash7 if flash7 else False,
 			flash8 = flash8 if flash8 else False,
-			transition_time1 =transition_time1,
+			transition_time1 =transition_time1 if transition_time2 else 0,
 			transition_time2 = transition_time2 if transition_time2 else 0,
 			transition_time3 = transition_time3 if transition_time3 else 0,
 			transition_time4 = transition_time4 if transition_time4 else 0,
@@ -134,6 +151,9 @@ def delete_message(request, message_id):
 
 
 def canned_text(request):
+
+	announcement5= ['[title_val]', '\\x06\\R\\X254\\Dno\\','t_time1', 'first_', '\\X254\\Ano\\Dno\\', 't_time2', 'second_', '\\n\\X254\\Ano\\Dno\\','t_time3', 'third_', '\\n\\X254\\Ano\\Dno\\','t_time4', 'fourth_', '\n\\X254\\Ano\\Dno\\','t_time5', 'fifth_', ' WAIT ', 'wait_time',' SEC SIGNTYPE 0xC "\\x6403" ', 'voice_file_name', ' WAIT ', 'display_time', ' SEC INT "\\x06\x05\\J\\"']
+	announcement2 = ['[title_val]', '\\x06\\R\\X254\\Dno\\','t_time1', 'first_', '\\X254\\Ano\\Dno\\', 't_time2', 'second_',' WAIT ', 'wait_time',' SEC SIGNTYPE 0xC "\\x6403" ', 'voice_file_name', ' WAIT ', 'display_time', ' SEC INT "\\x06\x05\\J\\"']
 	response = HttpResponse(content_type='text/plain')
 	print(" I am the response: ", response)
 	response['Content-Disposition'] = 'attachment; filename=canned.txt'
@@ -180,6 +200,7 @@ def canned_text(request):
 			'transition_time7': message.transition_time7,
 			'transition_time8': message.transition_time8,
 			'display_time': message.display_time,
+			'voice_file_name': message.voice_file_name,
 			'date_posted': message.date_posted.strftime('%Y-%m-%d'),
 		}
 		messages_list.append(message_data)
@@ -189,78 +210,80 @@ def canned_text(request):
 	lines = []
 	for msg in messages_list:
 		long_line = ""
+		temp_ann = announcement5
+		print("THis is THE CURRENT MESSAGE: " ,msg)
 		#all_line = msg['line']
-		for i in range(len(announcement)):
+		for i in range(len(temp_ann)):
 			print("THE LONG LINE IS : ", long_line)
 			#all_line = msg['line']
 			k =17
-			if announcement[i] == '[title_val]':
+			if temp_ann[i] == '[title_val]':
 				temp = '[' + msg['title'] + ']'
 				long_line += temp
-			elif announcement[i] ==  'first_' or announcement[i] == 'second_' or announcement[i] == 'third_' or announcement[i] == 'fouth_' or announcement[i] == 'fifth_':
-				if announcement[i] == 'first_':
-					announcement[i] = msg['line1']
-					long_line += announcement[i]
-				elif announcement[i] == 'second_':
-					announcement[i] = msg['line2']
-					long_line += announcement[i]
-				elif announcement[i] == 'third_':
-					announcement[i] = msg['line3']
-					long_line += announcement[i]
-				elif announcement[i] == 'fourth_':
-					announcement[i] = msg['line4']
-					long_line += announcement[i]
-				elif announcement[i] == 'fifth_':
-					announcement[i] = msg['line5']
-					long_line += announcement[i]
-				elif announcement[i] == 'sixth_':
-					announcement[i] = msg['line6']
-					long_line += announcement[i]
-				elif announcement[i] == 'seventh_':
-					announcement[i] = msg['line7']
-					long_line += announcement[i]
-				elif announcement[i] == 'eighth_':
-					announcement[i] = msg['line8']
-					long_line += announcement[i]
+			elif temp_ann[i] ==  'first_' or temp_ann[i] == 'second_' or temp_ann[i] == 'third_' or temp_ann[i] == 'fouth_' or temp_ann[i] == 'fifth_':
+				if temp_ann[i] == 'first_':
+					#temp_ann[i] = msg['line1']
+					long_line += msg['line1']
+				elif temp_ann[i] == 'second_':
+					#temp_ann[i] = msg['line2']
+					long_line += msg['line2']
+				elif temp_ann[i] == 'third_':
+					#temp_ann[i] = msg['line3']
+					long_line += msg['line3']
+				elif temp_ann[i] == 'fourth_':
+					#temp_ann[i] = msg['line4']
+					long_line += msg['line4']
+				elif temp_ann[i] == 'fifth_':
+					#temp_ann[i] = msg['line5']
+					long_line += msg['line5']
+				elif temp_ann[i] == 'sixth_':
+					#temp_ann[i] = msg['line6']
+					long_line += msg['line6']
+				elif temp_ann[i] == 'seventh_':
+					#temp_ann[i] = msg['line7']
+					long_line += msg['line7']
+				elif temp_ann[i] == 'eighth_':
+					#temp_ann[i] = msg['line8']
+					long_line += msg['line8']
 				else:
 					long_line += 'ERRROR   AT THE MOMEBNT'
-			elif announcement[i] == 't_time1' or announcement[i] == 't_time2' or announcement[i] == 't_time3' or announcement[i] == 't_time4' or announcement[i] == 't_time5' or announcement[i] == 't_time6' or announcement[i] == 't_time7' or announcement[i] == 't_time8':
-					if announcement[i] == 't_time1':
-						announcement[i] = 'T00' + str(msg['transition_time1'])
-						long_line += announcement[i]
-					elif announcement[i] == 't_time2':
-						announcement[i] = 'T00' + str(msg['transition_time2'])
-						long_line += announcement[i]
-					elif announcement[i] == 't_time3':
-						announcement[i] = 'T00' + str(msg['transition_time3'])
-						long_line += announcement[i]
-					elif announcement[i] == 't_time4':
-						announcement[i] = 'T00' + str(msg['transition_time4'])
-						long_line += announcement[i]
-					elif announcement[i] == 't_time5':
-						announcement[i] = 'T00' +str(msg['transition_time5'])
-						long_line += announcement[i]
-					elif announcement[i] == 't_time6':
-						announcement[i] = 'T00' +str(msg['transition_time6'])
-						long_line += announcement[i]
-					elif announcement[i] == 't_time7':
-						announcement[i] = 'T00' +str(msg['transition_time7'])
-						long_line += announcement[i]
-					elif announcement[i] == 't_time8':
-						announcement[i] = 'T00' +str(msg['transition_time8'])
-						long_line += announcement[i]
-			elif announcement[i] == 'display_time':
-				announcement[i] = str(msg['display_time'])
-				long_line += announcement[i]
-			elif announcement[i] == 'wait_time':
+			elif temp_ann[i] == 't_time1' or temp_ann[i] == 't_time2' or temp_ann[i] == 't_time3' or temp_ann[i] == 't_time4' or temp_ann[i] == 't_time5' or temp_ann[i] == 't_time6' or temp_ann[i] == 't_time7' or temp_ann[i] == 't_time8':
+					if temp_ann[i] == 't_time1':
+						#temp_ann[i] = 'T00' + str(msg['transition_time1'])
+						long_line += 'T00' + str(msg['transition_time1'])
+					elif temp_ann[i] == 't_time2':
+						#temp_ann[i] = 'T00' + str(msg['transition_time2'])
+						long_line += 'T00' + str(msg['transition_time2'])
+					elif temp_ann[i] == 't_time3':
+						#temp_ann[i] = 'T00' + str(msg['transition_time3'])
+						long_line += 'T00' + str(msg['transition_time3'])
+					elif temp_ann[i] == 't_time4':
+						#temp_ann[i] = 'T00' + str(msg['transition_time4'])
+						long_line += 'T00' + str(msg['transition_time4'])
+					elif temp_ann[i] == 't_time5':
+						#temp_ann[i] = 'T00' +str(msg['transition_time5'])
+						long_line +=  'T00' +str(msg['transition_time5'])
+					elif temp_ann[i] == 't_time6':
+						#temp_ann[i] = 'T00' +str(msg['transition_time6'])
+						long_line += 'T00' +str(msg['transition_time6'])
+					elif temp_ann[i] == 't_time7':
+						#temp_ann[i] = 'T00' +str(msg['transition_time7'])
+						long_line += 'T00' +str(msg['transition_time7'])
+					elif temp_ann[i] == 't_time8':
+						#temp_ann[i] = 'T00' +str(msg['transition_time8'])
+						long_line += 'T00' +str(msg['transition_time8'])
+			elif temp_ann[i] == 'display_time':
+				#temp_ann[i] = str(msg['display_time'])
+				long_line += str(msg['display_time'])
+			elif temp_ann[i] == 'wait_time':
 				temp_wait = '5'
 				long_line += temp_wait
-			elif announcement[i] == 'voice_file_name':
-				temp_voice_file = "VX90934"
-				announcement[i] = temp_voice_file
-				long_line += announcement[i]
+			elif temp_ann[i] == 'voice_file_name':
+				#temp_voice_file = msg['voice_file_name']
+				#temp_ann[i] = msg['voice_file_name']
+				long_line += msg['voice_file_name']
 			else:
-				long_line += announcement[i]
+				long_line += temp_ann[i]
 		long_line += '\n'
 		lines.append(long_line)
 		#long_line = ""
