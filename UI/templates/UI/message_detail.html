@@ -142,7 +142,7 @@
 					<label>{{object.line5}}</label>
 				</div>
 				<div class="col-sm">
-					<label>{{object.line5}}</label>
+					<label>{{object.scroll5}}</label>
 				</div>
 				<div class="col-sm">
 					<label>{{object.flash5}} </label>
@@ -240,11 +240,11 @@
 			<a type="submit" class="btn btn-primary" href="{% url 'canned_text'  %}">Create Message</a>
 	</div>
 	<div class="col">
-		<button type="submit" class="btn btn-danger" href="{% url 'message-delete' object.id %}">Delete Message</button>
+		<a class="btn btn-danger" href="{% url 'message-delete' object.id %}">Delete Message</a>
 	</div>
 	
 	<div class="col">
-	<button type="submit" class="btn btn-warning" href="{% url 'message-update' object.id %}">Update Message</button>
+	<a class="btn btn-warning" href="{% url 'message-update' object.id %}">Update Message</a>
 	</div>
 		
 </div>	
