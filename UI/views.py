@@ -106,16 +106,16 @@ def create_message(request):
 		#create new message
 		new_message = Message(
 			title=title,
-			line1=line1.upper(),
-			line2=line2.upper(),
-			line3=line3.upper(),
-			line4=line4.upper(),
-			line5=line5.upper(),
-			line6=line6.upper(),
-			line7=line7.upper(),
-			line8= line8.upper(),
-			line9=line9.upper(),
-			line10=line10.upper(),
+			line1=line1.upper() if line1 else line1,
+			line2=line2.upper() if line2 else line2,
+			line3=line3.upper() if line3 else line3,
+			line4=line4.upper() if line4 else line4,
+			line5=line5.upper() if line5 else line5,
+			line6=line6.upper() if line6 else line6,
+			line7=line7.upper() if line7 else line7,
+			line8= line8.upper() if line8 else line8,
+			line9=line9.upper() if line9 else line9,
+			line10=line10.upper() if line10 else line10,
 			scroll1=scroll1,
 			scroll2 =scroll2,
 			scroll3 = scroll3,
@@ -348,27 +348,35 @@ def canned_text(request):
 					}
 
 	arr = ['title','const_1','scroll_d1','duration1','line1',
-	         'const_2','scroll_a2','scroll_d2','duration2','line2',
-	         'const_3','scroll_a3','scroll_d3','duration3','line3',
-	         'const_4','scroll_a4','scroll_d4','duration4','line4',
-	         'const_5','scroll_a5','scroll_d5','duration5','line5',
-	         'const_6','scroll_a6','scroll_d6','duration6','line6',
-	         'const_7','scroll_a7','scroll_d7','duration7','line7',
-	         'const_8','scroll_a8','scroll_d8','duration8','line8',
-	         'const_9','scroll_a9','scroll_d9','duration9','line9']
+	         'const_2','flash2','scroll_a2','scroll_d2','duration2','line2',
+	         'const_3','flash3','scroll_a3','scroll_d3','duration3','line3',
+	         'const_4','flash4','scroll_a4','scroll_d4','duration4','line4',
+	         'const_5','flash5','scroll_a5','scroll_d5','duration5','line5',
+	         'const_6','flash6','scroll_a6','scroll_d6','duration6','line6',
+	         'const_7','flash7','scroll_a7','scroll_d7','duration7','line7',
+	         'const_8','flash8','scroll_a8','scroll_d8','duration8','line8',
+	         'const_9','flash9','scroll_a9','scroll_d9','duration9','line9']
 
 	arr2 = ['wait_time','voice_file_name','display_time']
-	const_f = '\\x06\\R\\X254'
+	const_f = '"\\x06\\R\\X254'
 	const_s = '\\n\\X254'
 	for msg in messages_list:
 		long_line = ""
 		for i in arr:
 			if i == 'title':
-				temp = '[' + msg['title'] + ']'
+				temp = '[' + msg['title'] + '] '
 				long_line += temp
 			elif i == 'const_1':
+				if msg['line1'] == '':
+					long_line += '"'
+					break
 				temp = const_f
 				long_line += temp
+			elif i == 'flash1':
+				if msg['flash1'] == True:
+					temp = dictionary['flash_true']
+					long_line += temp
+				
 			elif i == 'scroll_d1':
 				if msg['scroll1'] == 'horizontal':
 					temp = dictionary['dis_left_to_right']
@@ -384,11 +392,20 @@ def canned_text(request):
 					temp =  '\\T0' + str(msg['transition_time1'])
 				long_line += temp
 			elif i =='line1':
+				if msg['line1'] == '':
+					break
 				temp = msg['line1']
 				long_line += temp
 			elif i == 'const_2':
+				if msg['line2'] == '':
+					long_line += '"'
+					break
 				temp = const_s
 				long_line += temp
+			elif i == 'flash2':
+				if msg['flash2'] == True:
+					temp = dictionary['flash_true']
+					long_line += temp
 			elif i == 'scroll_a2':
 				if msg['scroll2'] == 'horizontal':
 					temp = dictionary['app_right_to_left']
@@ -417,8 +434,15 @@ def canned_text(request):
 				temp = msg['line2']
 				long_line += temp
 			elif i == 'const_3':
+				if msg['line3'] == '':
+					long_line += '"'
+					break
 				temp = const_s
 				long_line += temp
+			elif i == 'flash3':
+				if msg['flash3'] == True:
+					temp = dictionary['flash_true']
+					long_line += temp
 			elif i == 'scroll_a3':
 				if msg['scroll3'] == 'horizontal':
 					temp = dictionary['app_right_to_left']
@@ -449,9 +473,15 @@ def canned_text(request):
 				temp = msg['line3']
 				long_line += temp
 			elif i == 'const_4':
-				temp = ""
+				if msg['line4'] == '':
+					long_line += '"'
+					break
 				temp = const_s
 				long_line += temp
+			elif i == 'flash4':
+				if msg['flash4'] == True:
+					temp = dictionary['flash_true']
+					long_line += temp
 			elif i == 'scroll_a4':
 				temp = ""
 				if msg['scroll4'] == 'horizontal':
@@ -481,8 +511,15 @@ def canned_text(request):
 				temp = msg['line4']
 				long_line += temp
 			elif i == 'const_5':
+				if msg['line5'] == '':
+					long_line += '"'
+					break
 				temp = const_s
 				long_line += temp
+			elif i == 'flash5':
+				if msg['flash5'] == True:
+					temp = dictionary['flash_true']
+					long_line += temp
 			elif i == 'scroll_a5':
 				if msg['scroll5'] == 'horizontal':
 					temp = dictionary['app_left_to_right']
@@ -511,8 +548,15 @@ def canned_text(request):
 				temp = msg['line5']
 				long_line += temp
 			elif i == 'const_6':
+				if msg['line6'] == '':
+					long_line += '"'
+					break
 				temp = const_s
 				long_line += temp
+			elif i == 'flash6':
+				if msg['flash6'] == True:
+					temp = dictionary['flash_true']
+					long_line += temp
 			elif i == 'scroll_a6':
 				if msg['scroll5'] == 'horizontal':
 					temp = dictionary['app_left_to_right']
@@ -541,8 +585,15 @@ def canned_text(request):
 				temp = msg['line6']
 				long_line += temp
 			elif i == 'const_7':
+				if msg['line7'] == '':
+					long_line += '"'
+					break
 				temp = const_s
 				long_line += temp
+			elif i == 'flash7':
+				if msg['flash7'] == True:
+					temp = dictionary['flash_true']
+					long_line += temp
 			elif i == 'scroll_a7':
 				if msg['scroll7'] == 'horizontal':
 					temp = dictionary['app_left_to_right']
@@ -574,9 +625,14 @@ def canned_text(request):
 				long_line += temp
 			elif i == 'const_8':
 				if msg['line8'] == '':
+					long_line += '"'
 					break
 				temp = const_s
 				long_line += temp
+			elif i == 'flash8':
+				if msg['flash8'] == True:
+					temp = dictionary['flash_true']
+					long_line += temp
 			elif i == 'scroll_a8':
 				if msg['scroll8'] == 'horizontal':
 					temp = dictionary['app_left_to_right']
@@ -610,9 +666,14 @@ def canned_text(request):
 				long_line += temp
 			elif i == 'const_9':
 				if msg['line9'] == '':
+					long_line += '"'
 					break
 				temp = const_s
 				long_line += temp
+			elif i == 'flash9':
+				if msg['flash9'] == True:
+					temp = dictionary['flash_true']
+					long_line += temp
 			elif i == 'scroll_a9':
 				if msg['scroll9'] == 'horizontal':
 					temp = dictionary['app_left_to_right']
@@ -650,7 +711,7 @@ def canned_text(request):
 				temp = msg['voice_file_name']
 				long_line += temp
 			elif j == 'display_time':
-				temp = 'WAIT '+ str(msg['display_time'])+' SEC INT "\\x06\\x05\\J"'
+				temp = ' WAIT '+ str(msg['display_time'])+' SEC INT "\\x06\\x05\\J"'
 				long_line += temp
 		long_line += '\r\n'
 		lines.append(long_line)

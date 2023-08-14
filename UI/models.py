@@ -1,10 +1,13 @@
 from django.db import models
+from django.core.exceptions import ValidationError
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
 
 scroll_choices = ['None','Horizontal','Vertical']
 # Create your models here.
+
+
 class Message(models.Model):
 
 	title= models.CharField(max_length=20)
@@ -55,6 +58,7 @@ class Message(models.Model):
 	def __str__(self):
 		return self.title
 
+	
 
 	def get_absolute_url(self):
 		return reverse('message-detail', kwargs={'pk': self.pk})
