@@ -51,7 +51,7 @@ class Message(models.Model):
 	flash8 = models.BooleanField(default=False)
 	flash9 = models.BooleanField(default=False)
 	flash10 = models.BooleanField(default=False)
-	display_time = models.IntegerField()
+	display_time = models.IntegerField(default=5)
 	voice_file_name = models.TextField(null=False, default='V500903')
 	date_posted = models.DateTimeField(default=timezone.now)
 
