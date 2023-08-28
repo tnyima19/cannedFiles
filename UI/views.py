@@ -51,7 +51,7 @@ class MessageUpdateView(UpdateView):
 	'scroll1','scroll2','scroll3','scroll4','scroll5', 'scroll6','scroll7','scroll8','flash1',
 	'flash2','flash3','flash4','flash6','flash7','flash8','transition_time1',
 	'transition_time2','transition_time3','transition_time4','transition_time5',
-	'transition_time6', 'transition_time7','transition_time8','display_time']
+	'transition_time6', 'transition_time7','transition_time8','display_time','voice_file_name']
 
 
 def create_message(request):
@@ -98,10 +98,33 @@ def create_message(request):
 		transition_time9 = request.POST.get('transition_time9')
 		transition_time10 = request.POST.get('transition_time10')
 
-		display_time = request.POST.get('display_time')
+		display_time = request.POST.get('subtotal_display_time')
 
 		#transition_times = [transition_time1, transition_time2, transition_time3, transition_time4,transition_time4, transition_time5,
 		#transition_time5, transition_time6, transition_time7, transition_time8]
+		total_time = 0
+		if transition_time1:
+			total_time += int(transition_time1)
+		if transition_time2:
+			total_time += int(transition_time2)
+		if transition_time3:
+			total_time += int(transition_time3)
+		if transition_time4:
+			total_time += int(transition_time4)
+		if transition_time5:
+			total_time += int(transition_time5)
+		if transition_time6:
+			total_time += int(transition_time)
+		if transition_time7:
+			total_time += int(transition_time7)
+		if transition_time8:
+			total_time += int(transition_time8)
+		if transition_time9:
+			total_time += int(transition_time9)
+		if transition_time10:
+			total_time += int(transition_time10)
+		if display_time:
+			total_time += int(display_time)
 
 		#create new message
 		new_message = Message(
@@ -136,24 +159,24 @@ def create_message(request):
 			flash8 = flash8 if flash8 else False,
 			flash9 = flash9 if flash9 else False,
 			flash10 = flash10 if flash10 else False,
-			transition_time1 =transition_time1 if transition_time2 else 2,
-			transition_time2 = transition_time2 if transition_time2 else 2,
-			transition_time3 = transition_time3 if transition_time3 else 2,
-			transition_time4 = transition_time4 if transition_time4 else 2,
-			transition_time5 = transition_time5 if transition_time5 else 2,
-			transition_time6 = transition_time6 if transition_time6 else 2,
-			transition_time7 = transition_time7 if transition_time7 else 2,
-			transition_time8 = transition_time8 if transition_time8 else 2,
-			transition_time9 = transition_time9 if transition_time9 else 2,
-			transition_time10 = transition_time10 if transition_time10 else 2,
-			display_time = display_time,
+			transition_time1 =transition_time1 if transition_time2 else 0,
+			transition_time2 = transition_time2 if transition_time2 else 0,
+			transition_time3 = transition_time3 if transition_time3 else 0,
+			transition_time4 = transition_time4 if transition_time4 else 0,
+			transition_time5 = transition_time5 if transition_time5 else 0,
+			transition_time6 = transition_time6 if transition_time6 else 0,
+			transition_time7 = transition_time7 if transition_time7 else 0,
+			transition_time8 = transition_time8 if transition_time8 else 0,
+			transition_time9 = transition_time9 if transition_time9 else 0,
+			transition_time10 = transition_time10 if transition_time10 else 0,
+			display_time = total_time,
 
 			#date_posted = date_posted,
 			)
 
 		#modify the announcement
 
-		print("new-line ", new_message.line1)
+		print("new display_time: ", new_message.display_time)
 		new_message.save()
 		return redirect('main-home')
 		#return render(request,'UI/UI.html')
@@ -176,16 +199,16 @@ def canned_text(request):
 	announcement5= ['[title_val]', '\\x06\\R\\X254\\Dno\\','t_time1', 'first_', '\\X254\\Ano\\Dno\\', 't_time2', 'second_', '\\n\\X254\\Ano\\Dno\\','t_time3', 'third_', '\\n\\X254\\Ano\\Dno\\','t_time4', 'fourth_', '\n\\X254\\Ano\\Dno\\','t_time5', 'fifth_', ' WAIT ', 'wait_time',' SEC SIGNTYPE 0xC "\\x6403" ', 'voice_file_name', ' WAIT ', 'display_time', ' SEC INT "\\x06\x05\\J\\"']
 	announcement2 = ['[title_val]', '\\x06\\R\\X254\\Dno\\','t_time1', 'first_', '\\X254\\Ano\\Dno\\', 't_time2', 'second_',' WAIT ', 'wait_time',' SEC SIGNTYPE 0xC "\\x6403" ', 'voice_file_name', ' WAIT ', 'display_time', ' SEC INT "\\x06\x05\\J\\"']
 	response = HttpResponse(content_type='text/plain')
-	print(" I am the response: ", response)
+	#print(" I am the response: ", response)
 	response['Content-Disposition'] = 'attachment; filename=canned.rte'
 
 	# get one message from the model 
 	messages = Message.objects.all()
 	messages_list = []
 
-	print(messages)
+	#print(messages)
 	for message in messages:
-		print(" I am the message: ", message)
+		#print(" I am the message: ", message)
 		message_data = {
 			'id': message.id,
 			'title': message.title,
@@ -235,7 +258,7 @@ def canned_text(request):
 		}
 		messages_list.append(message_data)
 
-	print(messages)
+	#print(messages)
 	k  = 17
 	lines = []
 	# for msg in messages_list:

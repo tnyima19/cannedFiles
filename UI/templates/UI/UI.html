@@ -72,7 +72,7 @@
 						
 				</div>
 				<div class="col-lg">
-					<input type="text" name="line1" maxlenth="17"> </input>
+					<input type="text" name="line1" maxlenth="18"> </input>
 				</div>
 				<div class="col-sm">
 					<select name="scroll1" class="form-select form-select-sm" aria-label="Default select">
@@ -87,7 +87,7 @@
 				</div>
 		
 				<div class="col-sm">
-					<input type="number" name="transition_time1" placeholder="0"></input>
+					<input id="tt1" type="number" name="transition_time1" placeholder="0"></input>
 				</div>
 				<div class="col-sm">
 					<label >sec</label>
@@ -99,7 +99,7 @@
 						
 				</div>
 				<div class="col-lg">
-					<input type="text" name="line2" maxlenth="17"> </input>
+					<input type="text" name="line2" maxlenth="18"> </input>
 				</div>
 				<div class="col-sm">
 					<select name="scroll2" class="form-select form-select-sm" aria-label="Default select">
@@ -114,7 +114,7 @@
 				</div>
 		
 				<div class="col-sm">
-					<input type="number" name="transition_time2" placeholder="0"></input>
+					<input id="tt2" type="number" name="transition_time2" placeholder="0"></input>
 				</div>
 				<div class="col-sm">
 					<label >sec</label>
@@ -126,7 +126,7 @@
 						
 				</div>
 				<div class="col-lg">
-					<input type="text" name="line3" maxlenth="17"> </input>
+					<input type="text" name="line3" maxlenth="18"> </input>
 				</div>
 				<div class="col-sm">
 					<select name="scroll3" class="form-select form-select-sm" aria-label="Default select">
@@ -141,7 +141,7 @@
 				</div>
 		
 				<div class="col-sm">
-					<input type="number" name="transition_time3" placeholder="0"></input>
+					<input id="tt3" type="number" name="transition_time3" placeholder="0"></input>
 				</div>
 				<div class="col-sm">
 					<label >sec</label>
@@ -153,7 +153,7 @@
 						
 				</div>
 				<div class="col-lg">
-					<input type="text" name="line4" maxlenth="17"> </input>
+					<input type="text" name="line4" maxlenth="18"> </input>
 				</div>
 				<div class="col-sm">
 					<select name="scroll4" class="form-select form-select-sm" aria-label="Default select">
@@ -168,7 +168,7 @@
 				</div>
 		
 				<div class="col-sm">
-					<input type="number" name="transition_time4" placeholder="0"></input>
+					<input id="tt4" type="number" name="transition_time4" placeholder="0"></input>
 				</div>
 				<div class="col-sm">
 					<label >sec</label>
@@ -195,7 +195,7 @@
 				</div>
 		
 				<div class="col-sm">
-					<input type="number" name="transition_time5" placeholder="0"></input>
+					<input id="tt5" type="number" name="transition_time5" placeholder="0"></input>
 				</div>
 				<div class="col-sm">
 					<label >sec</label>
@@ -207,7 +207,7 @@
 						
 				</div>
 				<div class="col-lg">
-					<input type="text" name="line6" maxlenth="17"> </input>
+					<input type="text" name="line6" maxlenth="18"> </input>
 				</div>
 				<div class="col-sm">
 					<select name="scroll6" class="form-select form-select-sm" aria-label="Default select">
@@ -222,7 +222,7 @@
 				</div>
 		
 				<div class="col-sm">
-					<input type="number" name="transition_time6" placeholder="0"></input>
+					<input id="tt6" type="number" name="transition_time6" placeholder="0"></input>
 				</div>
 				<div class="col-sm">
 					<label >sec</label>
@@ -234,7 +234,7 @@
 						
 				</div>
 				<div class="col-lg">
-					<input type="text" name="line7" maxlenth="17"> </input>
+					<input type="text" name="line7" maxlenth="18"> </input>
 				</div>
 				<div class="col-sm">
 					<select name="scroll7" class="form-select form-select-sm" aria-label="Default select">
@@ -249,7 +249,7 @@
 				</div>
 		
 				<div class="col-sm">
-					<input type="number" name="transition_time7" placeholder="0"></input>
+					<input id="tt7" type="number" name="transition_time7" placeholder="0"></input>
 				</div>
 				<div class="col-sm">
 					<label >sec</label>
@@ -260,7 +260,7 @@
 						
 				</div>
 				<div class="col-lg">
-					<input type="text" name="line8" maxlenth="17"> </input>
+					<input type="text" name="line8" maxlenth="18"> </input>
 				</div>
 				<div class="col-sm">
 					<select name="scroll8" class="form-select form-select-sm" aria-label="Default select">
@@ -275,7 +275,7 @@
 				</div>
 		
 				<div class="col-sm">
-					<input type="number" name="transition_time8" placeholder="0"></input>
+					<input id="tt8" type="number" name="transition_time8" placeholder="0"></input>
 				</div>
 				<div class="col-sm">
 					<label >sec</label>
@@ -312,10 +312,21 @@
 
 			<div class="row">
 				<div class="col-2">
+				<label>subTotal Time :</label>
+				</div>
+				<div class="col-3">
+				<input id="dt" class="input-lg" type="number" name="subtotal_display_time"> </input>
+				</div>
+				<div class="col">
+				<label>second</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-2">
 				<label>Display Time :</label>
 				</div>
 				<div class="col-3">
-				<input class="input-lg" type="number" name="display_time"> </input>
+				<label id="total_time" class="input-lg" type="text" name="display_time"></label>
 				</div>
 				<div class="col">
 				<label>second</label>
@@ -341,6 +352,7 @@
 		<p>transition Time: stops display when you choose a type of scroll</p>
 
 		</div>
+	
 
 		
 	</div>
@@ -428,5 +440,42 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
+
+	<script>
+		var tt1  = document.getElementById('tt1');
+		var tt2  = document.getElementById('tt2');
+		var tt3  = document.getElementById('tt3');
+		var tt4  = document.getElementById('tt4');
+		var tt5  = document.getElementById('tt5');
+		var tt6  = document.getElementById('tt6');
+		var tt7  = document.getElementById('tt7');
+		var tt8  = document.getElementById('tt8');
+		var dt = document.getElementById('dt');
+		var total_time = document.getElementById('total_time');
+		function getTotalResult(){
+			let value1 = parseInt(tt1.value) || 0;
+			let value2 = parseInt(tt2.value) || 0;
+			let value3 = parseInt(tt3.value) || 0;
+			let value4 = parseInt(tt4.value) || 0;
+			let value5 = parseInt(tt5.value) || 0;
+			let value6 = parseInt(tt6.value) || 0;
+			let value7 = parseInt(tt7.value) || 0;
+			let value8 = parseInt(tt8.value) || 0;
+			let dt_val = parseInt(dt.value) || 0;
+			let sum = value1 + value2 + value3 + value4 + value5 + value6 + value7 + value8 + dt_val ;
+
+			total_time.textContent = `Total Time: ${sum} seconds`;
+		}
+		tt1.addEventListener('input',getTotalResult);
+		tt2.addEventListener('input',getTotalResult);
+		tt3.addEventListener('input',getTotalResult);
+		tt4.addEventListener('input',getTotalResult);
+		tt5.addEventListener('input',getTotalResult);
+		tt6.addEventListener('input',getTotalResult);
+		tt7.addEventListener('input',getTotalResult);
+		tt8.addEventListener('input',getTotalResult);
+		dt.addEventListener('input',getTotalResult);
+
+		</script>
 </body>
 </html>

@@ -1,36 +1,43 @@
 from django.db import models
 from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy as _ 
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
 
 scroll_choices = ['None','Horizontal','Vertical']
 # Create your models here.
-
+def validate_length(line):
+	if len(line) > 19:
+		raiseValidationError(_("%(line)s has characters greater than 19"), params={"line":line},)
+# Create your models here.
+def validate_title(title_line):
+	if len(line) > 19:
+		raiseValidationError(_("%(title_line)s has characters greater than 30"), params={"title_line":title_line},)
 
 class Message(models.Model):
 
-	title= models.CharField(max_length=20)
-	line1 = models.TextField(max_length=17, null=True, blank=True)
-	line2 = models.TextField(max_length=17, null=True, blank=True)
-	line3 = models.TextField(max_length=17, null=True, blank=True)
-	line4 = models.TextField(max_length=17, null=True, blank=True)
-	line5 = models.TextField(max_length=17, null=True, blank=True)
-	line6 = models.TextField(max_length=17, null=True, blank=True)
-	line7 = models.TextField(max_length=17, null=True, blank=True)
-	line8 = models.TextField(max_length=17, null=True, blank=True)
-	line9 = models.TextField(max_length=17, null=True, blank=True)
-	line10 = models.TextField(max_length=17, null=True, blank=True)
-	transition_time1 = models.IntegerField(default=2)
-	transition_time2 = models.IntegerField(default=2)
-	transition_time3 = models.IntegerField(default=2)
-	transition_time4 = models.IntegerField(default=2)
-	transition_time5 = models.IntegerField(default=2)
-	transition_time6 = models.IntegerField(default=2)
-	transition_time7 = models.IntegerField(default=2)
-	transition_time8 = models.IntegerField(default=2)
-	transition_time9 = models.IntegerField(default=2)
-	transition_time10 = models.IntegerField(default=2)
+	title= models.CharField(max_length=30)
+	line1 = models.TextField(max_length=19,validators=[validate_length], null=True, blank=True)
+	line2 = models.TextField(max_length=19,validators=[validate_length], null=True, blank=True)
+	line3 = models.TextField(max_length=19,validators=[validate_length], null=True, blank=True)
+	line4 = models.TextField(max_length=19, validators=[validate_length],null=True, blank=True)
+	line5 = models.TextField(max_length=19,validators=[validate_length], null=True, blank=True)
+	line6 = models.TextField(max_length=19,validators=[validate_length], null=True, blank=True)
+	line7 = models.TextField(max_length=19, validators=[validate_length],null=True, blank=True)
+	line8 = models.TextField(max_length=19,validators=[validate_length], null=True, blank=True)
+	line9 = models.TextField(max_length=19,validators=[validate_length], null=True, blank=True)
+	line10 = models.TextField(max_length=19,validators=[validate_length], null=True, blank=True)
+	transition_time1 = models.IntegerField(default=0)
+	transition_time2 = models.IntegerField(default=0)
+	transition_time3 = models.IntegerField(default=0)
+	transition_time4 = models.IntegerField(default=0)
+	transition_time5 = models.IntegerField(default=0)
+	transition_time6 = models.IntegerField(default=0)
+	transition_time7 = models.IntegerField(default=0)
+	transition_time8 = models.IntegerField(default=0)
+	transition_time9 = models.IntegerField(default=0)
+	transition_time10 = models.IntegerField(default=0)
 	scroll1= models.CharField(max_length=20, default='None', null=True)
 	scroll2= models.CharField(max_length=20, default='None', null=True)
 	scroll3= models.CharField(max_length=20, default='None', null=True)
